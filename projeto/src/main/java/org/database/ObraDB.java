@@ -22,8 +22,22 @@ public class ObraDB {
         return obraDB;
     }
 
-    public void create(Obra obra) {
+    public boolean create(Obra obra) {
+        if (find(obra.getNome()) != null) {
+            return false;
+        }
         obras.put(obra.getNome(), obra);
+        return true;
+    }
+
+    public boolean update(Obra obra) {
+        Obra obraMapeada = find(obra.getNome());
+        if (obraMapeada == null) {
+            return false;
+        }
+        delete(obraMapeada.getNome());
+        obras.put(obra.getNome(), obra);
+        return true;
     }
 
     public Obra find(String nome) {

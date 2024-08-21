@@ -43,4 +43,14 @@ public class Obra {
     public void removePessoa(Pessoa pessoa) {
         pessoas.remove(pessoa);
     }
+
+    @Override
+    public String toString() {
+        return "Obra{" +
+                "valor=" + valor +
+                ", tamanho=" + tamanho +
+                ", nome='" + nome + '\'' +
+                ", pessoas=" + pessoas +
+                '}';
+    }
 }

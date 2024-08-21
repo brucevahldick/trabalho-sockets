@@ -1,4 +1,4 @@
-package org.controller;
+package org.controller.enums;
 
 public enum Operacao {
     INSERT("INSERT"),

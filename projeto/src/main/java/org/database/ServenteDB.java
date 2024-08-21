@@ -21,8 +21,22 @@ public class ServenteDB {
         return serventeDB;
     }
 
-    public void create(Servente servente) {
+    public boolean create(Servente servente) {
+        if (find(servente.getCpf()) != null) {
+            return false;
+        }
         serventes.put(servente.getCpf(), servente);
+        return true;
+    }
+
+    public boolean update(Servente servente) {
+        Servente serventeMapeado = find(servente.getCpf());
+        if (serventeMapeado == null) {
+            return false;
+        }
+        delete(serventeMapeado.getCpf());
+        serventes.put(servente.getCpf(), servente);
+        return true;
     }
 
     public Servente find(String cpf) {

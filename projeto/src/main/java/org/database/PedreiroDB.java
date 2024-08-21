@@ -21,8 +21,22 @@ public class PedreiroDB {
         return pedreiroDB;
     }
 
-    public void create(Pedreiro pedreiro) {
+    public boolean create(Pedreiro pedreiro) {
+        if (find(pedreiro.getCpf()) != null) {
+            return false;
+        }
         pedreiros.put(pedreiro.getCpf(), pedreiro);
+        return true;
+    }
+
+    public boolean update(Pedreiro pedreiro) {
+        Pedreiro pedreiroMapeado = find(pedreiro.getCpf());
+        if (pedreiroMapeado == null) {
+            return false;
+        }
+        delete(pedreiroMapeado.getCpf());
+        pedreiros.put(pedreiro.getCpf(), pedreiro);
+        return true;
     }
 
     public Pedreiro find(String cpf) {

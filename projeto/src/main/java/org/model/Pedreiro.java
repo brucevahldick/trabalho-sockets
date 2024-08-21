@@ -10,4 +10,11 @@ public class Pedreiro extends Pessoa {
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Pedreiro{" +
+                "cargo='" + cargo + '\'' +
+                '}';
+    }
 }

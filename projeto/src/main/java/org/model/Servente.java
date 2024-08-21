@@ -10,4 +10,11 @@ public class Servente extends Pessoa {
     public void setFuncao(String funcao) {
         this.funcao = funcao;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Servente{" +
+                "funcao='" + funcao + '\'' +
+                '}';
+    }
 }

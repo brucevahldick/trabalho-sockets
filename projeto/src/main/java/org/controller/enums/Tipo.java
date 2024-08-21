@@ -1,13 +1,13 @@
-package org.controller;
+package org.controller.enums;
 
-public enum Tipos {
+public enum Tipo {
     OBRA("OBRA"),
     SERVENTE("SERVENTE"),
     PEDREIRO("PEDREIRO");
 
     private final String valor;
 
-    Tipos(String valor) {
+    Tipo(String valor) {
         this.valor = valor;
     }
 
