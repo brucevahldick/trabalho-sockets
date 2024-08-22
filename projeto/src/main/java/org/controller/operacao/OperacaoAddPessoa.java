@@ -1,7 +1,7 @@
 package org.controller.operacao;
 
 import org.controller.controllers.ControllerInterface;
-import org.exceptions.ArgumentosInsuficientes;
+import org.exceptions.ArgumentosInsuficientesException;
 
 public class OperacaoAddPessoa implements OperacaoInterface {
 
@@ -10,7 +10,7 @@ public class OperacaoAddPessoa implements OperacaoInterface {
     @Override
     public String executaOperacao(ControllerInterface controllerInterface, String[] parametros) throws Exception {
         if (parametros.length < numeroParametros) {
-            throw new ArgumentosInsuficientes(numeroParametros);
+            throw new ArgumentosInsuficientesException(numeroParametros);
         }
         return controllerInterface.insertPessoa(parametros);
     }
