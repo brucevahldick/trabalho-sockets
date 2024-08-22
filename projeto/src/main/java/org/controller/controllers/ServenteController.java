@@ -5,7 +5,7 @@ import org.exceptions.OperacaoNaoSuportadaException;
 import org.model.Pessoa;
 import org.model.Servente;
 
-import java.util.List;
+import java.util.Collection;
 
 public class ServenteController implements ControllerInterface {
     @Override
@@ -28,7 +28,7 @@ public class ServenteController implements ControllerInterface {
 
     @Override
     public String list() {
-        List<Pessoa> pessoas = PessoaDB.getInstance().list();
+        Collection<Pessoa> pessoas = PessoaDB.getInstance().list();
         StringBuilder mensagemRetorno = new StringBuilder();
         for (Pessoa pessoa : pessoas) {
             if (pessoa instanceof Servente) {
@@ -71,7 +71,7 @@ public class ServenteController implements ControllerInterface {
         servente.setCpf(parametros[2]);
         servente.setNome(parametros[3]);
         servente.setEndereco(parametros[4]);
-        servente.setFuncao(parametros[5]);
+        servente.setFuncao(parametros.length > 5 ? parametros[5] : null);
         return servente;
     }
 }

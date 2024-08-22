@@ -5,7 +5,7 @@ import org.exceptions.OperacaoNaoSuportadaException;
 import org.model.Pedreiro;
 import org.model.Pessoa;
 
-import java.util.List;
+import java.util.Collection;
 
 public class PedreiroController implements ControllerInterface {
     @Override
@@ -28,7 +28,7 @@ public class PedreiroController implements ControllerInterface {
 
     @Override
     public String list() {
-        List<Pessoa> pessoas = PessoaDB.getInstance().list();
+        Collection<Pessoa> pessoas = PessoaDB.getInstance().list();
         StringBuilder mensagemRetorno = new StringBuilder();
         for (Pessoa pessoa : pessoas) {
             if (pessoa instanceof Pedreiro) {
@@ -71,7 +71,7 @@ public class PedreiroController implements ControllerInterface {
         pedreiro.setCpf(parametros[2]);
         pedreiro.setNome(parametros[3]);
         pedreiro.setEndereco(parametros[4]);
-        pedreiro.setCargo(parametros[5]);
+        pedreiro.setCargo(parametros.length > 5 ? parametros[5] : null);
         return pedreiro;
     }
 }

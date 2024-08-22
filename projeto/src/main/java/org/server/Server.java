@@ -5,23 +5,31 @@ import org.controller.Facade;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 public class Server {
     public static void main(String[] args) throws IOException {
-        ServerSocket server = new ServerSocket(80);
+        try {
+            InetAddress ip = InetAddress.getLocalHost();
+            System.out.println("Server IP address: " + ip.getHostAddress());
+        } catch (UnknownHostException e) {
+            System.out.println("Failed to get IP address: " + e.getMessage());
+        }
+        ServerSocket server = new ServerSocket(8080);
         server.setReuseAddress(true);
         while (true) {
             System.out.println("Waiting for connection");
             try (Socket connectionSocket = server.accept()) {
-                BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
-                ObjectOutputStream out = new ObjectOutputStream(connectionSocket.getOutputStream());
-                String clientSentence = inFromClient.readLine();
+                PrintWriter out = new PrintWriter(new OutputStreamWriter(connectionSocket.getOutputStream()), true);
+                BufferedReader in = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
+                String clientSentence = in.readLine();
+                System.out.println("Received: " + clientSentence);
                 String[] data = clientSentence.split(";");
                 String response = (new Facade(data)).executarOperacao();
-                System.out.println("Received: " + response);
-                out.writeObject(response);
+                out.println(response);
             } catch (Exception e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
         }
     }

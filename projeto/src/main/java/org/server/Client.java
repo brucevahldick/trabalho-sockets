@@ -13,15 +13,17 @@ public class Client {
         System.out.println("Creating connection");
         System.out.println("Connected");
         while (true) {
-            try (Socket conn = new Socket(ipConfig, 80)) {
+            try (Socket conn = new Socket(ipConfig, 8080)) {
                 System.out.println();
                 System.out.println("Insira as informações");
                 String inputData = scanner.nextLine();
-                DataOutputStream outToServer = new DataOutputStream(conn.getOutputStream());
-                outToServer.writeBytes(inputData + '\n');
-                ObjectInputStream in = new ObjectInputStream(conn.getInputStream());
-                String response = (String) in.readObject();
-                System.out.println("Response received: " + response);
+                PrintWriter out = new PrintWriter(new OutputStreamWriter(conn.getOutputStream()), true);
+                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                out.println(inputData);
+                String response = in.readLine();
+                if (response != null) {
+                    System.out.println("Response received: " + response);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

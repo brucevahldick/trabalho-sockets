@@ -2,8 +2,8 @@ package org.database;
 
 import org.model.Pessoa;
 
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class PessoaDB {
@@ -47,7 +47,7 @@ public class PessoaDB {
         return pessoas.remove(cpf) != null;
     }
 
-    public List<Pessoa> list() {
-        return (List<Pessoa>) pessoas.values();
+    public Collection<Pessoa> list() {
+        return pessoas.values();
     }
 }

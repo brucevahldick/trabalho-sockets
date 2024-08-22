@@ -3,8 +3,8 @@ package org.database;
 import org.model.Obra;
 import org.model.Pessoa;
 
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ObraDB {
@@ -48,8 +48,8 @@ public class ObraDB {
         return obras.remove(nome) != null;
     }
 
-    public List<Obra> list() {
-        return (List<Obra>) obras.values();
+    public Collection<Obra> list() {
+        return obras.values();
     }
 
     public boolean addPessoaToObra(String nome, Pessoa pessoa) {

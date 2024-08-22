@@ -5,7 +5,7 @@ import org.database.PessoaDB;
 import org.model.Obra;
 import org.model.Pessoa;
 
-import java.util.List;
+import java.util.Collection;
 
 public class ObraController implements ControllerInterface {
     @Override
@@ -28,7 +28,7 @@ public class ObraController implements ControllerInterface {
 
     @Override
     public String list() {
-        List<Obra> obras = ObraDB.getInstance().list();
+        Collection<Obra> obras = ObraDB.getInstance().list();
         return obras.toString();
     }
 

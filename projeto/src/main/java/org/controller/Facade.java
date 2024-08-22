@@ -19,17 +19,22 @@ public class Facade {
     }
 
     public Facade(String[] parametros) throws Exception {
-        controllerInterface = getFactory().getController(parametros[1]);
-        if (controllerInterface == null) {
-            throw new TipoNaoSuportadoException();
-        }
+        this.parametros = parametros;
     }
 
-    public String executarOperacao() throws Exception {
-        OperacaoInterface operacaoInterface = getFactory().getOperacao(parametros[0]);
-        if (operacaoInterface == null) {
-            throw new OperacaoNaoSuportadaException();
+    public String executarOperacao() {
+        try {
+            controllerInterface = getFactory().getController(parametros[1]);
+            if (controllerInterface == null) {
+                throw new TipoNaoSuportadoException();
+            }
+            OperacaoInterface operacaoInterface = getFactory().getOperacao(parametros[0]);
+            if (operacaoInterface == null) {
+                throw new OperacaoNaoSuportadaException();
+            }
+            return operacaoInterface.executaOperacao(controllerInterface, parametros);
+        } catch (Exception e) {
+            return e.getMessage();
         }
-        return operacaoInterface.executaOperacao(controllerInterface, parametros);
     }
 }
