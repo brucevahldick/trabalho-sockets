@@ -44,21 +44,29 @@ public class ObraDB {
         return obras.get(nome);
     }
 
-    public void delete(String nome) {
-        obras.remove(nome);
+    public boolean delete(String nome) {
+        return obras.remove(nome) != null;
     }
 
     public List<Obra> list() {
         return (List<Obra>) obras.values();
     }
 
-    public void addPessoaToObra(String nome, Pessoa pessoa) {
+    public boolean addPessoaToObra(String nome, Pessoa pessoa) {
         Obra obra = find(nome);
+        if (obra == null) {
+            return false;
+        }
         obra.addPessoa(pessoa);
+        return true;
     }
 
-    public void removePessoaFromObra(String nome, Pessoa pessoa) {
+    public boolean removePessoaFromObra(String nome, Pessoa pessoa) {
         Obra obra = find(nome);
+        if (obra == null) {
+            return false;
+        }
         obra.removePessoa(pessoa);
+        return true;
     }
 }

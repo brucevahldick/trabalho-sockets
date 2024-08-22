@@ -8,7 +8,6 @@ import org.exceptions.TipoNaoSuportadoException;
 public class Facade {
 
     private ControllerInterface controllerInterface;
-    private String[] parametros;
     private Factory factory;
 
     private Factory getFactory() {
@@ -18,15 +17,14 @@ public class Facade {
         return factory;
     }
 
-    public Facade(String tipo, String[] parametros) throws Exception {
+    public Facade(String tipo) throws Exception {
         controllerInterface = getFactory().getController(tipo);
         if (controllerInterface == null) {
             throw new TipoNaoSuportadoException();
         }
-        this.parametros = parametros;
     }
 
-    public String executarOperacao(String operacao) throws OperacaoNaoSuportadaException {
+    public String executarOperacao(String operacao, String[] parametros) throws Exception {
         OperacaoInterface operacaoInterface = getFactory().getOperacao(operacao);
         if (operacaoInterface == null) {
             throw new OperacaoNaoSuportadaException();

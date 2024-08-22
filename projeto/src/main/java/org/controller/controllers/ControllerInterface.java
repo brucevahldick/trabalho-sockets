@@ -10,4 +10,8 @@ public interface ControllerInterface {
     String delete(String[] parametros);
 
     String update(String[] parametros);
+
+    String insertPessoa(String[] parametros) throws Exception;
+
+    String deletePessoa(String[] parametros) throws Exception;
 }

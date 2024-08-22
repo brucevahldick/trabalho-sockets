@@ -26,6 +26,8 @@ public class Factory {
         operacaoInterfaceMap.put(Operacao.GET, new OperacaoGet());
         operacaoInterfaceMap.put(Operacao.DELETE, new OperacaoDelete());
         operacaoInterfaceMap.put(Operacao.LIST, new OperacaoList());
+        operacaoInterfaceMap.put(Operacao.INSERTP, new OperacaoAddPessoa());
+        operacaoInterfaceMap.put(Operacao.DELETEP, new OperacaoRemovePessoa());
     }
 
     public ControllerInterface getController(String tipo) {

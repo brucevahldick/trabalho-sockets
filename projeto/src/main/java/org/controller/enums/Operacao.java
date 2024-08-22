@@ -5,7 +5,9 @@ public enum Operacao {
     DELETE("DELETE"),
     UPDATE("UPDATE"),
     GET("GET"),
-    LIST("LIST");
+    LIST("LIST"),
+    INSERTP("INSERTP"),
+    DELETEP("DELETEP");
 
     private final String valor;
 
