@@ -24,6 +24,7 @@ public class Client {
                 if (response != null) {
                     System.out.println("Response received: " + response);
                 }
+                conn.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
